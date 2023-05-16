@@ -11,6 +11,12 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum Role {
+    SUPER_ADMIN
+    ADMIN
+    GUEST
+}
+
 model Example {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
@@ -52,6 +58,8 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+
+    role Role @default(GUEST)
 }
 
 model VerificationToken {

@@ -1,14 +1,14 @@
-import Navbar from "@/components/navbar";
-import { PrismaClient } from "@prisma/client";
-import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const prisma = new PrismaClient();
+import { getServerSession } from "next-auth";
+import type { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { redirectToHome } from "@/utils/redirects";
+import { authOptions } from "@/server/auth";
+import Navbar from "@/components/Navbar";
 
 const schema = z.object({
-  username: z.string(),
-  password: z.string(),
+  email: z.string().email(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -16,25 +16,33 @@ type FormValues = z.infer<typeof schema>;
 export default function LoginPage() {
   const { register, handleSubmit } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    const user = prisma.user.findMany({
-      where: {},
-    });
-  };
-
+  const onSubmit = (data: FormValues) => signIn("email", { email: data.email });
   return (
     <>
-      <Navbar></Navbar>
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register("username")} />
-        <br />
-        <input type="password" {...register("password")} />
+      <Navbar />
+      <form onSubmit={() => handleSubmit(onSubmit)}>
+        <input type="email" {...register("email")} />
         <br />
         <button type="submit">Submit</button>
       </form>
-      <p>
-        Don&apos;t have an account? <Link href="/register">Sign up</Link>
-      </p>
+      <p>or</p>
+      <button onClick={() => signIn("github")}>Connect with Github</button>
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (session) {
+    return redirectToHome;
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+};

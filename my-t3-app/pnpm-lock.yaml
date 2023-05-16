@@ -18,10 +18,12 @@ specifiers:
   eslint: ^8.36.0
   eslint-config-next: ^13.4.1
   next: ^13.4.1
-  next-auth: ^4.21.0
+  next-auth: ^4.22.1
+  nodemailer: ^6.9.2
   prisma: ^4.11.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.43.9
   superjson: 1.12.2
   typescript: ^5.0.2
   zod: ^3.21.4
@@ -36,9 +38,11 @@ dependencies:
   '@trpc/react-query': 10.26.0_umfrugaz453xuwiifkhz4usemu
   '@trpc/server': 10.26.0
   next: 13.4.2_biqbaboplfbrettd7655fr4n2y
-  next-auth: 4.22.1_cmp7sjki5xcmfyvhcokzzink7a
+  next-auth: 4.22.1_yrqs2llmtjzbe4kv55fvier3p4
+  nodemailer: 6.9.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.43.9_react@18.2.0
   superjson: 1.12.2
   zod: 3.21.4
 
@@ -126,7 +130,7 @@ packages:
       next-auth: ^4
     dependencies:
       '@prisma/client': 4.14.0_prisma@4.14.0
-      next-auth: 4.22.1_cmp7sjki5xcmfyvhcokzzink7a
+      next-auth: 4.22.1_yrqs2llmtjzbe4kv55fvier3p4
     dev: false
 
   /@next/env/13.4.2:
@@ -1933,7 +1937,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-auth/4.22.1_cmp7sjki5xcmfyvhcokzzink7a:
+  /next-auth/4.22.1_yrqs2llmtjzbe4kv55fvier3p4:
     resolution: {integrity: sha512-NTR3f6W7/AWXKw8GSsgSyQcDW6jkslZLH8AiZa5PQ09w1kR8uHtR9rez/E9gAq/o17+p0JYHE8QjF3RoniiObA==}
     peerDependencies:
       next: ^12.2.5 || ^13
@@ -1949,6 +1953,7 @@ packages:
       cookie: 0.5.0
       jose: 4.14.4
       next: 13.4.2_biqbaboplfbrettd7655fr4n2y
+      nodemailer: 6.9.2
       oauth: 0.9.15
       openid-client: 5.4.2
       preact: 10.14.0
@@ -2001,6 +2006,11 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: false
+
+  /nodemailer/6.9.2:
+    resolution: {integrity: sha512-4+TYaa/e1nIxQfyw/WzNPYTEZ5OvHIDEnmjs4LPmIfccPQN+2CYKmGHjWixn/chzD3bmUTu5FMfpltizMxqzdg==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /npm-run-path/4.0.1:
@@ -2270,6 +2280,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.43.9_react@18.2.0:
+    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:
