@@ -4,12 +4,22 @@ import { getServerSession } from "next-auth";
 import type { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { redirectToLogin } from "@/utils/redirects";
 import { authOptions } from "@/server/auth";
+import { signOut, useSession } from "next-auth/react";
 
 export default function HomePage() {
+  const session = useSession();
   return (
     <>
       <Navbar></Navbar>
-      <Link href="/login">Login</Link>
+      <button
+        onClick={() => {
+          {
+            session ? void signOut() : window.open("/login");
+          }
+        }}
+      >
+        {session ? "logout" : "login"}
+      </button>
     </>
   );
 }
