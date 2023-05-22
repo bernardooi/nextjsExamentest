@@ -20,7 +20,8 @@ export default function LoginPage() {
   return (
     <>
       <Navbar />
-      <form onSubmit={() => handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>Email: </label>
         <input type="email" {...register("email")} />
         <br />
         <button type="submit">Submit</button>

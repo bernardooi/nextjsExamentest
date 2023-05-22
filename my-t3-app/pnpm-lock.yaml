@@ -11,15 +11,19 @@ specifiers:
   '@trpc/server': ^10.18.0
   '@types/eslint': ^8.21.3
   '@types/node': ^18.15.5
+  '@types/papaparse': ^5.3.7
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
   '@typescript-eslint/eslint-plugin': ^5.56.0
   '@typescript-eslint/parser': ^5.56.0
+  csv-parser: ^3.0.0
   eslint: ^8.36.0
   eslint-config-next: ^13.4.1
+  file-system: ^2.2.2
   next: ^13.4.1
   next-auth: ^4.22.1
   nodemailer: ^6.9.2
+  papaparse: ^5.4.1
   prisma: ^4.11.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -37,9 +41,13 @@ dependencies:
   '@trpc/next': 10.26.0_5wlj4zqd5hbm7ghnogzr2cn6qq
   '@trpc/react-query': 10.26.0_umfrugaz453xuwiifkhz4usemu
   '@trpc/server': 10.26.0
+  '@types/papaparse': 5.3.7
+  csv-parser: 3.0.0
+  file-system: 2.2.2
   next: 13.4.2_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.22.1_yrqs2llmtjzbe4kv55fvier3p4
   nodemailer: 6.9.2
+  papaparse: 5.4.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.9_react@18.2.0
@@ -402,7 +410,12 @@ packages:
 
   /@types/node/18.16.10:
     resolution: {integrity: sha512-sMo3EngB6QkMBlB9rBe1lFdKSLqljyWPPWv6/FzSxh/IDlyVWSzE9RiF4eAuerQHybrWdqBgAGb03PM89qOasA==}
-    dev: true
+
+  /@types/papaparse/5.3.7:
+    resolution: {integrity: sha512-f2HKmlnPdCvS0WI33WtCs5GD7X1cxzzS/aduaxSu3I7TbhWlENjSPs6z5TaB9K0J+BH1jbmqTaM+ja5puis4wg==}
+    dependencies:
+      '@types/node': 18.16.10
+    dev: false
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -789,6 +802,14 @@ packages:
   /csstype/3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: true
+
+  /csv-parser/3.0.0:
+    resolution: {integrity: sha512-s6OYSXAK3IdKqYO33y09jhypG/bSDHPuyCme/IdEHfWpLf/jKcpitVFyOC6UemgGk8v7Q5u2XE0vvwmanxhGlQ==}
+    engines: {node: '>= 10'}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.8
+    dev: false
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -1344,6 +1365,19 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
+
+  /file-match/1.0.2:
+    resolution: {integrity: sha512-g9p6bZV3HlSUM35QPvFWiP/PckDVe5jLPDhx6PfMuy06o+htesJTyDu7zRdXnOm3BY8pXmxb+QY5qIcsoWMGNg==}
+    dependencies:
+      utils-extend: 1.0.8
+    dev: false
+
+  /file-system/2.2.2:
+    resolution: {integrity: sha512-YgbXEVCu21CfmoeJ1rFLVLPGhW9o7iCzVFqk7ydy2TxF7rXH2YB68CFgDXLOvTD2pMLtg8paVqurzVjxGRdYmw==}
+    dependencies:
+      file-match: 1.0.2
+      utils-extend: 1.0.8
+    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -1913,7 +1947,6 @@ packages:
 
   /minimist/1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
-    dev: true
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -2171,6 +2204,10 @@ packages:
     dependencies:
       p-limit: 3.1.0
     dev: true
+
+  /papaparse/5.4.1:
+    resolution: {integrity: sha512-HipMsgJkZu8br23pW15uvo6sib6wne/4woLZPlFf3rpDyMe9ywEXUsuD7+6K9PRkJlVT51j/sCOYDKGGS3ZJrw==}
+    dev: false
 
   /parent-module/1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -2656,6 +2693,10 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /utils-extend/1.0.8:
+    resolution: {integrity: sha512-+VzQieEAijyCFGqnGAWIy7Em1dFGdgf1w+orKwmTWHyaGL19aw9Oq5e5ZZaxgcS777AkPYEsbgWqpz5E6KniPg==}
     dev: false
 
   /uuid/8.3.2:
