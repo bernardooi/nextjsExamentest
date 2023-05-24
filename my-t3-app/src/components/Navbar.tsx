@@ -4,21 +4,28 @@ import Link from "next/link";
 export default function Navbar() {
   const { data: session } = useSession();
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-evenly",
-      }}
-    >
-      <h2 style={{ display: "inline" }}>
-        {session ? session.user.name : null}
+    <div className="navbar">
+      <h2 className="login-name">
+        {session
+          ? session.user.name
+            ? session.user.name
+            : session.user.email?.split("@")[0]
+          : null}
       </h2>
-      <Link href="/">Home</Link>
-      <Link href="/register">Register</Link>
-      <Link href="/list">View List</Link>
-      <Link href="/about">About</Link>
+      <Link className="nav-btn nav-1" href="/">
+        Home
+      </Link>
+      <Link className="nav-btn nav-2" href="/register">
+        Register
+      </Link>
+      <Link className="nav-btn nav-3" href="/list">
+        View List
+      </Link>
+      <Link className="nav-btn nav-4" href="/about">
+        About
+      </Link>
       <button
+        className="nav-btn nav-5"
         onClick={() => {
           {
             session ? void signOut() : window.open("/login");
