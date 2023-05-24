@@ -72,18 +72,20 @@ model VerificationToken {
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 model Student {
-    id        Int       @id @default(autoincrement())
+    id        String    @id @default(cuid())
     firstName String    @db.VarChar(255)
-    lastname  String    @db.VarChar(255)
+    lastName  String    @db.VarChar(255)
     subjects  Subject[]
 }
 
+// TODO use actual id for student id to identify which subject belongs to who 
 model Subject {
-    id       Int       @id @default(autoincrement())
-    subject  String    @db.VarChar(255)
-    points   Int
-    students Student[]
-    grade    Grade?
+    id        Int     @id @default(autoincrement())
+    subject   String  @db.VarChar(255)
+    points    String
+    student   Student @relation(fields: [studentId], references: [id])
+    grade     Grade?
+    studentId String
 }
 
 enum Grade {
