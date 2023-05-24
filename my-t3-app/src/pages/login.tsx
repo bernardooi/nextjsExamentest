@@ -21,43 +21,54 @@ export default function LoginPage() {
     <>
       <Navbar />
 
-
       <div className="NTI-backdrop"></div>
       <div className="NTI-background">
         <div id="form-cont">
+          <div id="login-form">
+            <img
+              src="images/nti-logo.png"
+              alt="nti logo"
+              id="form-logo"
+              className="inputs"
+            />
 
-        <div id="login-form">
-          <img src="images/nti-logo.png" alt="nti logo" id="form-logo" className="inputs"/>
-
-          <form id="form-box" onSubmit={handleSubmit(onSubmit)}>
-            <div className="input-box inputs">
+            <form id="form-box" onSubmit={handleSubmit(onSubmit)}>
+              <div className="input-box inputs">
                 <label>Email: </label>
-                <input type="email" id="email" className="form-input " {...register("email")} />
-            </div>
-            <button type="submit" value="LOGIN" id="form-submit" className="inputs">Submit</button>
-          </form>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-input "
+                  {...register("email")}
+                />
+              </div>
+              <button
+                type="submit"
+                value="LOGIN"
+                id="form-submit"
+                className="inputs"
+              >
+                Submit
+              </button>
+            </form>
 
-          <h2 className="or-header">Or Connect With</h2>
+            <h2 className="or-header">Or Connect With</h2>
 
-          <button className="github-input inputs" onClick={() => signIn("github")}> <img className="github-input-img" src="images/github-logo.png" alt="github" /> Github</button>
-
-        </div>
-
+            <button
+              className="github-input inputs"
+              onClick={() => signIn("github")}
+            >
+              {" "}
+              <img
+                className="github-input-img"
+                src="images/github-logo.png"
+                alt="github"
+              />{" "}
+              Github
+            </button>
+          </div>
         </div>
       </div>
-
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Email: </label>
-        <input type="email" {...register("email")} />
-        <br/>
-        <button type="submit">Submit</button>
-      </form>
-      <p>or</p>
-      <button onClick={() => signIn("github")}>Connect with Github</button>
-
-
-
     </>
   );
 }
