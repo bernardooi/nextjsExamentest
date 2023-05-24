@@ -54,6 +54,7 @@ export default function UploadFile() {
     Papa.parse(file, {
       header: true,
 
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       complete: async (result) => {
         console.log(result.data);
 
@@ -84,16 +85,26 @@ export default function UploadFile() {
   return (
     <>
       <Navbar />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>First Name:</label>
-        <input type="text" {...register("firstName")} />
-        <br />
-        <label>Last Name:</label>
-        <input type="text" {...register("lastName")} />
-        <br />
-        <input type="file" {...register("csvFile")} accept=".csv" required />
-        <button type="submit">Submit</button>
-      </form>
+
+      <div className="NTI-backdrop"></div>
+      <div className="NTI-background">
+        <div className="drop-area">
+          <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
+            <input
+              id="reg-file-input"
+              type="file"
+              {...register("csvFile")}
+              required
+              // onChange={handleFileChange}
+            />
+            <label htmlFor="reg-file-input" className="reg-file-label">
+              Upload File
+            </label>
+            <h2 className="reg-file-display">image.jpg</h2>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

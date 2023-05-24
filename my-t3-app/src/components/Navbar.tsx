@@ -12,11 +12,7 @@ export default function Navbar() {
       }}
     >
       <h2 style={{ display: "inline" }}>
-        {session
-          ? session.user.name
-            ? session.user.name
-            : session.user.email?.split("@")[0]
-          : null}
+        {session ? session.user.name : null}
       </h2>
       <Link href="/">Home</Link>
       <Link href="/register">Register</Link>
