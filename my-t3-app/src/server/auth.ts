@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
     }),
     EmailProvider({
       server: {
-        host: process.env.EMAIL_SERVER_HOST,
+        host: process .env.EMAIL_SERVER_HOST,
         port: Number(process.env.EMAIL_SERVER_PORT),
         auth: {
           user: process.env.EMAIL_SERVER_USER,
