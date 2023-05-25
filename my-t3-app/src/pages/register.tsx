@@ -90,24 +90,39 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
-
-            <label htmlFor="F-name-inp" className="name-label">First Name:</label>
-            <input type="text" name="F-name" id="F-name-inp" />
-            <label htmlFor="L-name-inp" className="name-label">Last Name:</label>
-            <input type="text" name="L-name" id="L-name-inp" />
+            <label htmlFor="F-name-inp" className="name-label">
+              First Name:
+            </label>
+            <input
+              type="text"
+              name="F-name"
+              id="F-name-inp"
+              {...register("firstName")}
+            />
+            <label htmlFor="L-name-inp" className="name-label">
+              Last Name:
+            </label>
+            <input
+              type="text"
+              name="L-name"
+              id="L-name-inp"
+              {...register("lastName")}
+            />
 
             <input
               id="reg-file-input"
               type="file"
               {...register("csvFile")}
               required
-              // onChange={handleFileChange}
+              accept=".csv"
             />
             <label htmlFor="reg-file-input" className="reg-file-label">
               Upload File
             </label>
             <h2 className="reg-file-display">image.jpg</h2>
-            <button type="submit" className="reg-sub">Submit</button>
+            <button type="submit" className="reg-sub">
+              Submit
+            </button>
           </form>
         </div>
       </div>

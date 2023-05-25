@@ -37,6 +37,16 @@ export const studentRouter = createTRPCRouter({
 
       return student;
     }),
+  getAllStudents: protectedProcedure
+  .input(z.string())
+  .query(async({ctx, input})=>{
+    const student = await ctx.prisma.student.findMany({
+      where:{
+         ctx.prisma.student,
+      }
+    })
+
+  }),
 
   getSubjectsByStudentId: protectedProcedure
     .input(z.string())

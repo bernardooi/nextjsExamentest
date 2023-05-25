@@ -31,7 +31,6 @@ export default function LoginPage() {
               id="form-logo"
               className="inputs"
             />
-
             <form id="form-box" onSubmit={handleSubmit(onSubmit)}>
               <div className="input-box inputs">
                 <label>Email: </label>
@@ -58,12 +57,11 @@ export default function LoginPage() {
               className="github-input inputs"
               onClick={() => signIn("github")}
             >
-              {" "}
               <img
                 className="github-input-img"
                 src="images/github-logo.png"
                 alt="github"
-              />{" "}
+              />
               Github
             </button>
           </div>
