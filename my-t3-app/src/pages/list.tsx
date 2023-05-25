@@ -31,16 +31,96 @@ export default function HomePage() {
                 <div className="line-break"></div>
                 <table>
                     <tbody className="table-stud-content">
-                                                <tr>
+                        <tr>
                             <td className="name">??? ???</td>
                             <td className="program">???</td>
                             <td className="pass">?</td>
                             <td className="fail">?</td>
                         </tr>
+
+                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>                        <tr>
+                            <td className="name">??? ???</td>
+                            <td className="program">???</td>
+                            <td className="pass">?</td>
+                            <td className="fail">?</td>
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
-            <div className="list-2"></div>
+            <div className="list-2">
+                <p className="pro-text">Närhet till att inte ta examen</p>
+                <p className="pro-percent">---%</p>
+                <p className="pro-name">Knut </p>
+                {/* <p className="pro-fail-header">Underkända kurser:</p> */}
+
+
+            </div>
           </div>
         </div>
       </div>
