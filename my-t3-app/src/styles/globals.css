@@ -520,12 +520,12 @@ td{
   padding: 0.5vw;
 }
 
-#F-name-inp{
-
-}
-
-#L-name-inp{
-
+#program-select{
+  width: 20vw;
+  height: 5vh;
+  margin-top: 3vh;
+  border: black solid 2px;
+  border-radius: 5px;
 }
 
 .name-label{
@@ -544,13 +544,10 @@ td{
 }
 
 .reg-form-h1{
-  margin-bottom: 3vw;
+  margin-bottom: 1vw;
 }
 
 #reg-file-input{
-  width: 20vw;
-  height: 5vh;
-  padding: 1vw;
   visibility: hidden;
 }
 

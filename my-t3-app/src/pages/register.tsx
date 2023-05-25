@@ -34,6 +34,7 @@ export const schema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   role: z.string(),
+  program: z.string(),
   csvFile: z.custom<File>(),
   subjects: z.array(Subject),
   studentId: z.string(),
@@ -49,6 +50,8 @@ export default function UploadFile() {
   const [file, setFile] = useState();
 
   const onSubmit = (data: Csv) => {
+    console.log(data);
+
     const file: File = data.csvFile[0];
     const studentId = cuid(); // Generate unique student ID
     setValue("studentId", studentId); // Set the generated ID
@@ -62,7 +65,7 @@ export default function UploadFile() {
       complete: async (result) => {
         console.log(result.data);
 
-        const { firstName, lastName, role, csvFile } = data;
+        const { firstName, lastName, program, role, csvFile } = data;
 
         setLoading(true);
         try {
@@ -71,6 +74,7 @@ export default function UploadFile() {
             firstName,
             lastName,
             role,
+            program,
             subjects: result.data,
             csvFile,
           });
@@ -96,13 +100,6 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
-            <input
-              id="reg-file-input"
-              type="file"
-              {...register("csvFile")}
-              required
-              accept=".csv"
-            />
             <h1 className="reg-form-h1">Register a Student</h1>
 
             <label htmlFor="F-name-inp" className="name-label">
@@ -110,19 +107,25 @@ export default function UploadFile() {
             </label>
             <input
               type="text"
-              name="F-name"
               id="F-name-inp"
               className="reg-input"
+              {...register("firstName")}
             />
             <label htmlFor="L-name-inp" className="name-label">
               Last Name:
             </label>
             <input
               type="text"
-              name="L-name"
               id="L-name-inp"
               className="reg-input"
+              {...register("lastName")}
             />
+
+            <select id="program-select" {...register("program")}>
+              <option value="tek">Teknikprogrammet</option>
+              <option value="des">Designprogrammet</option>
+              <option value="el">Elprogrammet</option>
+            </select>
 
             <input
               id="reg-file-input"
