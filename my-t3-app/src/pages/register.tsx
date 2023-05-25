@@ -90,6 +90,12 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
+
+            <label htmlFor="F-name-inp" className="name-label">First Name:</label>
+            <input type="text" name="F-name" id="F-name-inp" />
+            <label htmlFor="L-name-inp" className="name-label">Last Name:</label>
+            <input type="text" name="L-name" id="L-name-inp" />
+
             <input
               id="reg-file-input"
               type="file"
@@ -101,7 +107,7 @@ export default function UploadFile() {
               Upload File
             </label>
             <h2 className="reg-file-display">image.jpg</h2>
-            <button type="submit">Submit</button>
+            <button type="submit" className="reg-sub">Submit</button>
           </form>
         </div>
       </div>
