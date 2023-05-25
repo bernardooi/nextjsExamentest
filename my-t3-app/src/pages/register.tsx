@@ -100,6 +100,7 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" value="student" {...register("role")} hidden />
             <h1 className="reg-form-h1">Register a Student</h1>
 
             <label htmlFor="F-name-inp" className="name-label">
@@ -122,9 +123,9 @@ export default function UploadFile() {
             />
 
             <select id="program-select" {...register("program")}>
-              <option value="tek">Teknikprogrammet</option>
-              <option value="des">Designprogrammet</option>
-              <option value="el">Elprogrammet</option>
+              <option value="TEK">Teknikprogrammet</option>
+              <option value="DE">Designprogrammet</option>
+              <option value="EL">Elprogrammet</option>
             </select>
 
             <input

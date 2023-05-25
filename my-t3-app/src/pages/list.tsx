@@ -59,7 +59,7 @@ export default function HomePage() {
                     return (
                       <tr key={data.id}>
                         <td className="name">{data.firstName}</td>
-                        <td className="program"></td>
+                        <td className="program">{data.program}</td>
                         <td className="pass">{passCount}</td>
                         <td className="fail">{failCount}</td>
                       </tr>

@@ -1,8 +1,15 @@
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import LinkButton from "./buttons/LinkButtons";
 
 export default function Navbar() {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const isActiveRoute = (pathname) => {
+    return router.pathname === pathname;
+  };
+
   return (
     <div className="navbar">
       <h2 className="login-name">
@@ -12,18 +19,23 @@ export default function Navbar() {
             : session.user.email?.split("@")[0]
           : null}
       </h2>
-      <Link className="nav-btn nav-1" href="/">
-        Home
-      </Link>
-      <Link className="nav-btn nav-2" href="/register">
-        Register
-      </Link>
-      <Link className="nav-btn nav-3" href="/list">
-        View List
-      </Link>
-      <Link className="nav-btn nav-4" href="/about">
-        About
-      </Link>
+      <LinkButton href={"/"} name={"Home"} active={isActiveRoute("/")} />
+      <LinkButton
+        href={"/register"}
+        name={"Register"}
+        active={isActiveRoute("/register")}
+      />
+      <LinkButton
+        href={"/list"}
+        name={"View List"}
+        active={isActiveRoute("/list")}
+      />
+      <LinkButton
+        href={"/about"}
+        name={"About"}
+        active={isActiveRoute("/about")}
+      />
+
       <button
         className="nav-btn nav-5"
         onClick={() => {

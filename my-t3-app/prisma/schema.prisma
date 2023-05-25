@@ -74,9 +74,10 @@ model VerificationToken {
 model Student {
     id        String    @id @default(cuid())
     role      String
+    program   String
     firstName String    @db.VarChar(255)
     lastName  String    @db.VarChar(255)
-    subjects  Subject[] @relation(references: [id])
+    subjects  Subject[]
 }
 
 // TODO use actual id for student id to identify which subject belongs to who 

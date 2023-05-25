@@ -11,6 +11,7 @@ const studentSchema = z.object({
   studentId: z.string(),
   firstName: z.string(),
   role: z.string(),
+  program: z.string(),
   lastName: z.string(),
   subjects: z.array(subjectSchema),
 });
@@ -19,13 +20,14 @@ export const studentRouter = createTRPCRouter({
   createStudent: protectedProcedure
     .input(studentSchema)
     .mutation(async ({ ctx, input }) => {
-      const { studentId, firstName, role, lastName, subjects } = input;
+      const { studentId, firstName, role, program, lastName, subjects } = input;
 
       const student = await ctx.prisma.student.create({
         data: {
           id: studentId,
           firstName,
           lastName,
+          program,
           role,
           subjects: {
             create: subjects.map((subject) => ({
