@@ -9,6 +9,7 @@ import { type GetServerSideProps, type GetServerSidePropsContext } from "next";
 import { authOptions } from "@/server/auth";
 import { redirectToLogin } from "@/utils/redirects";
 import cuid from "cuid";
+import { useRouter } from "next/router";
 
 const gradeMapping = {
   A: "A",
@@ -32,6 +33,7 @@ const Subject = z.object({
 export const schema = z.object({
   firstName: z.string(),
   lastName: z.string(),
+  role: z.string(),
   csvFile: z.custom<File>(),
   subjects: z.array(Subject),
   studentId: z.string(),
@@ -40,9 +42,11 @@ export const schema = z.object({
 type Csv = z.infer<typeof schema>;
 
 export default function UploadFile() {
+  const router = useRouter();
   const { register, handleSubmit, setValue } = useForm<Csv>();
   const createStudent = api.student.createStudent.useMutation();
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState();
 
   const onSubmit = (data: Csv) => {
     const file: File = data.csvFile[0];
@@ -58,7 +62,7 @@ export default function UploadFile() {
       complete: async (result) => {
         console.log(result.data);
 
-        const { firstName, lastName, csvFile } = data;
+        const { firstName, lastName, role, csvFile } = data;
 
         setLoading(true);
         try {
@@ -66,12 +70,14 @@ export default function UploadFile() {
             studentId,
             firstName,
             lastName,
+            role,
             subjects: result.data,
             csvFile,
           });
           if (created) {
             console.log("done");
             setLoading(false);
+            await router.push("/list");
           }
         } catch (error) {
           console.log(error);
@@ -90,6 +96,7 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" value="student" hidden {...register("role")} />
             <label htmlFor="F-name-inp" className="name-label">
               First Name:
             </label>
@@ -108,17 +115,20 @@ export default function UploadFile() {
               id="L-name-inp"
               {...register("lastName")}
             />
-
             <input
               id="reg-file-input"
               type="file"
               {...register("csvFile")}
               required
+              onSelect={(data) => {
+                setFile(data);
+              }}
               accept=".csv"
             />
             <label htmlFor="reg-file-input" className="reg-file-label">
               Upload File
             </label>
+            {file ? file : ""}
             <h2 className="reg-file-display">image.jpg</h2>
             <button type="submit" className="reg-sub">
               Submit

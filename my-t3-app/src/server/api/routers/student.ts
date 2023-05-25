@@ -10,6 +10,7 @@ const subjectSchema = z.object({
 const studentSchema = z.object({
   studentId: z.string(),
   firstName: z.string(),
+  role: z.string(),
   lastName: z.string(),
   subjects: z.array(subjectSchema),
 });
@@ -18,13 +19,14 @@ export const studentRouter = createTRPCRouter({
   createStudent: protectedProcedure
     .input(studentSchema)
     .mutation(async ({ ctx, input }) => {
-      const { studentId, firstName, lastName, subjects } = input;
+      const { studentId, firstName, role, lastName, subjects } = input;
 
       const student = await ctx.prisma.student.create({
         data: {
           id: studentId,
           firstName,
           lastName,
+          role,
           subjects: {
             create: subjects.map((subject) => ({
               subject: subject.subject,
@@ -37,15 +39,15 @@ export const studentRouter = createTRPCRouter({
 
       return student;
     }),
-  getAllStudents: protectedProcedure
-  .input(z.string())
-  .query(async({ctx, input})=>{
-    const student = await ctx.prisma.student.findMany({
-      where:{
-         ctx.prisma.student,
-      }
-    })
-
+  getAllStudents: protectedProcedure.query(async ({ ctx, input }) => {
+    return await ctx.prisma.student.findMany({
+      where: {
+        role: "student",
+      },
+      include: {
+        subjects: true,
+      },
+    });
   }),
 
   getSubjectsByStudentId: protectedProcedure
