@@ -96,17 +96,43 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
-            <input id="reg-file-input" type="file" {...register("csvFile")} required accept=".csv"/>
+            <input
+              id="reg-file-input"
+              type="file"
+              {...register("csvFile")}
+              required
+              accept=".csv"
+            />
             <h1 className="reg-form-h1">Register a Student</h1>
 
-            <label htmlFor="F-name-inp" className="name-label">First Name:</label>
-            <input type="text" name="F-name" id="F-name-inp" className="reg-input"/>
-            <label htmlFor="L-name-inp" className="name-label">Last Name:</label>
-            <input type="text" name="L-name" id="L-name-inp" className="reg-input"/>
-
-            <input id="reg-file-input" type="file" {...register("csvFile")} required // onChange={handleFileChange}
+            <label htmlFor="F-name-inp" className="name-label">
+              First Name:
+            </label>
+            <input
+              type="text"
+              name="F-name"
+              id="F-name-inp"
+              className="reg-input"
             />
-            <label htmlFor="reg-file-input" className="reg-file-label"> Upload File </label>
+            <label htmlFor="L-name-inp" className="name-label">
+              Last Name:
+            </label>
+            <input
+              type="text"
+              name="L-name"
+              id="L-name-inp"
+              className="reg-input"
+            />
+
+            <input
+              id="reg-file-input"
+              type="file"
+              {...register("csvFile")}
+              required
+            />
+            <label htmlFor="reg-file-input" className="reg-file-label">
+              Upload File
+            </label>
 
             <h2 className="reg-file-display">image.jpg</h2>
             <button type="submit" className="reg-sub">
