@@ -99,6 +99,11 @@ export default function UploadFile() {
             <label htmlFor="L-name-inp" className="name-label">Last Name:</label>
             <input type="text" name="L-name" id="L-name-inp" className="reg-input"/>
 
+            <select name="programs" id="program-select">
+              <option value="tek">Teknikprogrammet</option>
+              <option value="des">Designprogrammet</option>
+              <option value="el">Elprogrammet</option>
+            </select>
             <input id="reg-file-input" type="file" {...register("csvFile")} required // onChange={handleFileChange}
             />
             <label htmlFor="reg-file-input" className="reg-file-label"> Upload File </label>
