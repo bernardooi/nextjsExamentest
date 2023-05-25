@@ -22,6 +22,7 @@ const gradeMapping = {
 const Subject = z.object({
   points: z.string(),
   subject: z.string(),
+  
   grade: z
     .string()
     .refine((value) => value in gradeMapping, {

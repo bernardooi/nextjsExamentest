@@ -85,6 +85,7 @@ model Subject {
     id        Int     @id @default(autoincrement())
     subject   String  @db.VarChar(255)
     points    String
+    
     student   Student @relation(fields: [studentId], references: [id])
     grade     Grade?
     studentId String
