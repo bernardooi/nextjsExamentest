@@ -1,10 +1,13 @@
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
-  return (
-    <>
 
-      <Navbar></Navbar>
+
+
+  
+    return (
+      <>
+        <Navbar />
 
 
       <div className="NTI-backdrop"></div>

@@ -82,6 +82,8 @@ export default function UploadFile() {
     });
   };
 
+
+
   return (
     <>
       <Navbar />
@@ -111,6 +113,37 @@ export default function UploadFile() {
             <button type="submit" className="reg-sub">
               Submit
             </button>
+
+          {/* Datanät
+          Eng 5 
+          Eng 6
+          Fys 1
+          GyArb
+          His 1
+          Idr 1
+          Kem 1
+          Ma 1C
+          Ma 2C
+          Ma 3C
+          Pro 1
+          Pro 2
+          Rel 1
+          Sam 1
+          Sve 1
+          Sve 2
+          Sve 3
+          Tek 1
+          TiPr1
+          Web 1
+          Web 2
+          WbS 1
+
+          Dig 1
+          Eng 7 */}
+
+
+
+
           </form>
         </div>
       </div>

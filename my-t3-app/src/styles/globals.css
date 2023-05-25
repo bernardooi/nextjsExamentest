@@ -393,36 +393,35 @@ label{
   justify-content: space-around;
 }
 
-.cat-1{
-  width: 100%;
-  height: 100%;
-  background-color: green;
-}
 
 .table-stud-content{
 }
 
 .list-1{
-  width: 70%;
+  width: 75%;
   height: 95%;
   padding-top: 2vw;
   background-color: lightgray;
   overflow-y:scroll;
+  border-radius: 10px;
 }
 
 .list-2{
-  width: 25%;
+  width: 20%;
   height: 95%;
   background-color: lightgray;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  border-radius: 10px;
+
 }
 
 .pro-text{
   width: 100%;
-  font-size: 1.2vw;
+  font-size: 1.5vw;
+  font-family: 'Courier New', monospace;
   text-align: center;
 }
 
@@ -431,16 +430,16 @@ label{
   height: 10vw;
   font-size: 5vw;
   text-align: center;
+  font-family: 'Courier New', monospace;
   line-height: 10vw;
 }
 
-.pro-name{
+.pro-stat{
+  font-family: 'Courier New', monospace;
   width: 100%;
-  height: auto;
-  font-size: 1.5vw;
   text-align: center;
+  font-size: 1.5vw;
 }
-
 
 
 
@@ -461,6 +460,7 @@ table{
 .table-header{
   font-weight: bold;
   margin: 0;
+  background-color: green;
 }
 
 tr{
@@ -482,15 +482,19 @@ td{
 }
 
 .program{
-  width: 40%;
+  width: 15%;
 }
 
 .pass{
-  width: 10%;
+  width: 15%;
 }
 
 .fail{
-  width: 10%;
+  width: 15%;
+}
+
+.examen{
+  width: 15%;
 }
 
 
@@ -544,6 +548,7 @@ td{
 }
 
 .reg-form-h1{
+  font-size: 2vw;
   margin-bottom: 1vw;
 }
 
