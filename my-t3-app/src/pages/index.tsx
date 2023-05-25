@@ -5,10 +5,12 @@ import { type GetServerSideProps, type GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 
 export default function HomePage() {
+
+
+
   return (
     <>
-
-      <Navbar></Navbar>
+      <Navbar />
 
       <div className="NTI-backdrop"></div>
       <div className="NTI-background">

@@ -1,31 +1,55 @@
 import Navbar from "@/components/Navbar";
 import { api } from "@/utils/api";
 
+interface Student {
+  id: number;
+  firstName: string;
+  program: string;
+  subjects: {
+    name: string;
+    grade: string;
+  }[];
+}
+
 export default function ListPage() {
   const getAllstudents = api.student.getAllStudents.useQuery();
 
   const students = getAllstudents.data;
 
-  const coreSubjects = (program) => {
+  const coreSubjects = (program: string) => {
     if (program === "TEK") {
-      return;
+      return [
+        "Matematik 1c",
+        "Svenska 1",
+        "Svenska 2",
+        "Svenska 3",
+        "Engelska 5",
+        "Engelska 6",
+      ];
     } else if (program === "DE") {
     } else if (program === "EL") {
     }
   };
-  const countFailsAndPasses = (subjects: unknown[]) => {
-    const passCount = subjects.filter(
-      (subject) => subject.grade !== "F"
-    ).length;
-    const failCount = subjects.filter(
-      (subject) => subject.grade === "F"
-    ).length;
+  const countFailsAndPasses = (
+    subjects: { name: string; grade: string }[],
+    coreSubj: string[]
+  ) => {
+    let passCount = 0;
+    let failCount = 0;
+
+    subjects.forEach((subject) => {
+      if (subject.grade === "F" || coreSubj.includes(subject.name)) {
+        failCount++;
+      } else {
+        passCount++;
+      }
+    });
 
     return { passCount, failCount };
   };
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
 
       <div className="NTI-backdrop"></div>
       <div className="NTI-background">
@@ -47,6 +71,7 @@ export default function ListPage() {
                     <th className="program">Program</th>
                     <th className="pass">G</th>
                     <th className="fail">IG</th>
+                    <th className="examen">Examen</th>
                   </tr>
                 </tbody>
               </table>
@@ -54,8 +79,10 @@ export default function ListPage() {
               <table>
                 <tbody className="table-stud-content">
                   {students?.map((data) => {
+                    const coreSubj = coreSubjects(data.program);
                     const { passCount, failCount } = countFailsAndPasses(
-                      data.subjects
+                      data.subjects,
+                      coreSubj
                     );
 
                     return (
@@ -64,17 +91,22 @@ export default function ListPage() {
                         <td className="program">{data.program}</td>
                         <td className="pass">{passCount}</td>
                         <td className="fail">{failCount}</td>
+                        <td className="examen"></td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
             </div>
+
             <div className="list-2">
-              <p className="pro-text">Närhet till att inte ta examen</p>
-              <p className="pro-percent">---%</p>
-              <p className="pro-name">Knut </p>
-              {/* <p className="pro-fail-header">Underkända kurser:</p> */}
+              <div>
+                <p className="pro-text">Examensgrad:</p>
+                <p className="pro-percent">--%</p>
+                <br />
+                <p className="pro-stat">Passed: </p>
+                <p className="pro-stat">Failed: </p>
+              </div>
             </div>
           </div>
         </div>
