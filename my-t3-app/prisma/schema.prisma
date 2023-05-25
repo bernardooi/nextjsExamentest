@@ -73,6 +73,8 @@ model VerificationToken {
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 model Student {
     id        String    @id @default(cuid())
+    role      String
+    program   String
     firstName String    @db.VarChar(255)
     lastName  String    @db.VarChar(255)
     subjects  Subject[]
@@ -83,6 +85,7 @@ model Subject {
     id        Int     @id @default(autoincrement())
     subject   String  @db.VarChar(255)
     points    String
+    
     student   Student @relation(fields: [studentId], references: [id])
     grade     Grade?
     studentId String

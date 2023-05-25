@@ -9,6 +9,7 @@ import { type GetServerSideProps, type GetServerSidePropsContext } from "next";
 import { authOptions } from "@/server/auth";
 import { redirectToLogin } from "@/utils/redirects";
 import cuid from "cuid";
+import { useRouter } from "next/router";
 
 const gradeMapping = {
   A: "A",
@@ -21,6 +22,7 @@ const gradeMapping = {
 const Subject = z.object({
   points: z.string(),
   subject: z.string(),
+  
   grade: z
     .string()
     .refine((value) => value in gradeMapping, {
@@ -32,6 +34,8 @@ const Subject = z.object({
 export const schema = z.object({
   firstName: z.string(),
   lastName: z.string(),
+  role: z.string(),
+  program: z.string(),
   csvFile: z.custom<File>(),
   subjects: z.array(Subject),
   studentId: z.string(),
@@ -40,11 +44,14 @@ export const schema = z.object({
 type Csv = z.infer<typeof schema>;
 
 export default function UploadFile() {
+  const router = useRouter();
   const { register, handleSubmit, setValue } = useForm<Csv>();
   const createStudent = api.student.createStudent.useMutation();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = (data: Csv) => {
+    console.log(data);
+
     const file: File = data.csvFile[0];
     const studentId = cuid(); // Generate unique student ID
     setValue("studentId", studentId); // Set the generated ID
@@ -58,7 +65,7 @@ export default function UploadFile() {
       complete: async (result) => {
         console.log(result.data);
 
-        const { firstName, lastName, csvFile } = data;
+        const { firstName, lastName, program, role, csvFile } = data;
 
         setLoading(true);
         try {
@@ -66,12 +73,15 @@ export default function UploadFile() {
             studentId,
             firstName,
             lastName,
+            role,
+            program,
             subjects: result.data,
             csvFile,
           });
           if (created) {
             console.log("done");
             setLoading(false);
+            await router.push("/list");
           }
         } catch (error) {
           console.log(error);
@@ -92,23 +102,44 @@ export default function UploadFile() {
       <div className="NTI-background">
         <div className="drop-area">
           <form className="reg-file-form" onSubmit={handleSubmit(onSubmit)}>
-
-            <input id="reg-file-input" type="file" {...register("csvFile")} required accept=".csv"/>
+            <input type="text" value="student" {...register("role")} hidden />
             <h1 className="reg-form-h1">Register a Student</h1>
 
-            <label htmlFor="F-name-inp" className="name-label">First Name:</label>
-            <input type="text" name="F-name" id="F-name-inp" className="reg-input"/>
-            <label htmlFor="L-name-inp" className="name-label">Last Name:</label>
-            <input type="text" name="L-name" id="L-name-inp" className="reg-input"/>
-
-            <select name="programs" id="program-select">
-              <option value="tek">Teknikprogrammet</option>
-              <option value="des">Designprogrammet</option>
-              <option value="el">Elprogrammet</option>
-            </select>
-            <input id="reg-file-input" type="file" {...register("csvFile")} required // onChange={handleFileChange}
+            <label htmlFor="F-name-inp" className="name-label">
+              First Name:
+            </label>
+            <input
+              type="text"
+              id="F-name-inp"
+              className="reg-input"
+              {...register("firstName")}
             />
-            <label htmlFor="reg-file-input" className="reg-file-label"> Upload File </label>
+            <label htmlFor="L-name-inp" className="name-label">
+              Last Name:
+            </label>
+            <input
+              type="text"
+              id="L-name-inp"
+              className="reg-input"
+              {...register("lastName")}
+            />
+
+            <select id="program-select" {...register("program")}>
+              <option value="TEK">Teknikprogrammet</option>
+              <option value="DE">Designprogrammet</option>
+              <option value="EL">Elprogrammet</option>
+            </select>
+
+            <input
+              id="reg-file-input"
+              type="file"
+              {...register("csvFile")}
+              required
+            />
+            <label htmlFor="reg-file-input" className="reg-file-label">
+              Upload File
+            </label>
+
             <h2 className="reg-file-display">image.jpg</h2>
             <button type="submit" className="reg-sub">
               Submit
