@@ -68,7 +68,12 @@ export default function HomePage() {
                 </tbody>
               </table>
             </div>
-            <div className="list-2"></div>
+            <div className="list-2">
+              <p className="pro-text">Närhet till att inte ta examen</p>
+              <p className="pro-percent">---%</p>
+              <p className="pro-name">Knut </p>
+              {/* <p className="pro-fail-header">Underkända kurser:</p> */}
+            </div>
           </div>
         </div>
       </div>
