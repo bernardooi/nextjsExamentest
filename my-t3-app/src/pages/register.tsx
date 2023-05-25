@@ -47,7 +47,6 @@ export default function UploadFile() {
   const { register, handleSubmit, setValue } = useForm<Csv>();
   const createStudent = api.student.createStudent.useMutation();
   const [loading, setLoading] = useState(false);
-  const [file, setFile] = useState();
 
   const onSubmit = (data: Csv) => {
     console.log(data);

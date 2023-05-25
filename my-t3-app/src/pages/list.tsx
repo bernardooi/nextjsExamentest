@@ -1,26 +1,28 @@
 import Navbar from "@/components/Navbar";
 import { api } from "@/utils/api";
 
-export default function HomePage() {
+export default function ListPage() {
   const getAllstudents = api.student.getAllStudents.useQuery();
 
   const students = getAllstudents.data;
 
+  const coreSubjects = (program) => {
+    if (program === "TEK") {
+      return;
+    } else if (program === "DE") {
+    } else if (program === "EL") {
+    }
+  };
   const countFailsAndPasses = (subjects: unknown[]) => {
-    let passCount = 0;
-    let failCount = 0;
-
-    subjects.forEach((subject) => {
-      if (subject.grade === "F") {
-        failCount++;
-      } else {
-        passCount++;
-      }
-    });
+    const passCount = subjects.filter(
+      (subject) => subject.grade !== "F"
+    ).length;
+    const failCount = subjects.filter(
+      (subject) => subject.grade === "F"
+    ).length;
 
     return { passCount, failCount };
   };
-
   return (
     <>
       <Navbar></Navbar>

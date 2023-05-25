@@ -10,8 +10,8 @@ const subjectSchema = z.object({
 const studentSchema = z.object({
   studentId: z.string(),
   firstName: z.string(),
-  role: z.string(),
   program: z.string(),
+  role: z.string(),
   lastName: z.string(),
   subjects: z.array(subjectSchema),
 });
