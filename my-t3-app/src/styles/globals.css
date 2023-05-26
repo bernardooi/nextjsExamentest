@@ -617,3 +617,47 @@ td{
 .about-text{
   color: white;
 }
+
+/* --------------------------------- */
+/*---------- CREDITS PAGE -----------*/
+/* --------------------------------- */
+
+
+.cred-roll{
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+@keyframes credits {
+  0% {top: 92vh;}
+  100% {top: -95vh;}
+}
+
+.creds{
+  width: 30vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  animation: credits 30s linear forwards;
+
+}
+
+#cred-head{
+  color: white;
+  font-size: 2.25vw;
+}
+
+.cred-names{
+  color: white;
+  font-size: 1.75vw;
+  margin: 0.5vw;
+  letter-spacing: 1px;
+}

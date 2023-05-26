@@ -109,6 +109,7 @@ export default function UploadFile() {
             <input
               type="text"
               id="F-name-inp"
+              required
               className="reg-input"
               {...register("firstName")}
             />
@@ -119,6 +120,7 @@ export default function UploadFile() {
               type="text"
               id="L-name-inp"
               className="reg-input"
+              required
               {...register("lastName")}
             />
 
@@ -132,6 +134,7 @@ export default function UploadFile() {
               id="reg-file-input"
               type="file"
               {...register("csvFile")}
+              accept=".csv"
               required
             />
             <label htmlFor="reg-file-input" className="reg-file-label">
