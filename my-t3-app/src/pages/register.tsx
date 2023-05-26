@@ -22,7 +22,7 @@ const gradeMapping = {
 const Subject = z.object({
   points: z.string(),
   subject: z.string(),
-  
+
   grade: z
     .string()
     .refine((value) => value in gradeMapping, {
@@ -92,8 +92,6 @@ export default function UploadFile() {
     });
   };
 
-
-
   return (
     <>
       <Navbar />
@@ -111,6 +109,7 @@ export default function UploadFile() {
             <input
               type="text"
               id="F-name-inp"
+              required
               className="reg-input"
               {...register("firstName")}
             />
@@ -121,6 +120,7 @@ export default function UploadFile() {
               type="text"
               id="L-name-inp"
               className="reg-input"
+              required
               {...register("lastName")}
             />
 
@@ -134,6 +134,7 @@ export default function UploadFile() {
               id="reg-file-input"
               type="file"
               {...register("csvFile")}
+              accept=".csv"
               required
             />
             <label htmlFor="reg-file-input" className="reg-file-label">
@@ -145,7 +146,7 @@ export default function UploadFile() {
               Submit
             </button>
 
-          {/* Datanät
+            {/* Datanät
           Eng 5 
           Eng 6
           Fys 1
@@ -171,10 +172,6 @@ export default function UploadFile() {
 
           Dig 1
           Eng 7 */}
-
-
-
-
           </form>
         </div>
       </div>
