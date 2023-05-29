@@ -15,6 +15,11 @@ export default function HomePage() {
       <div className="NTI-backdrop"></div>
       <div className="NTI-background">
 
+        <div className="NTI-home-text">
+          <img className="NTI-home-img" src="../../Images/nti-logo.png" alt="logo" />
+          <h3 className="NTI-home-h3">Graduation Calculator</h3>
+        </div>
+
         <div id="home-select">
             <span className="btn-span">
                 <div className="home-btn home1"><a className="home-btn-text" href="/register">Register</a><div className="btn-circle"></div></div>

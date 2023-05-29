@@ -98,6 +98,32 @@ a {
 /* --------------------------------- */
 
 
+.NTI-home-text{
+  position: absolute;
+  left: 30vh;
+  width: 35vw;
+  height: 15vw;
+  text-shadow: 3px 3px 3px #000000;
+
+}
+
+
+.NTI-home-img{
+  -webkit-filter: grayscale(1) invert(1);
+  filter: grayscale(1) invert(1);  width: 35vw;
+  height: auto;
+}
+
+.NTI-home-h3{
+  font-size: 2vw;
+  font-family: 'IBM Plex Mono', monospace;
+  color: white;
+  text-align: center;
+  margin-top: -2.5vw;
+}
+
+
+
 #home-select{
   height: 100%;
   width: 40vw;
