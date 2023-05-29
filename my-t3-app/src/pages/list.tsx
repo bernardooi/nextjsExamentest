@@ -1,5 +1,9 @@
 import Navbar from "@/components/Navbar";
+import { authOptions } from "@/server/auth";
 import { api } from "@/utils/api";
+import { redirectToLogin } from "@/utils/redirects";
+import type { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { getServerSession } from "next-auth";
 
 interface Student {
   id: number;
@@ -106,7 +110,7 @@ export default function ListPage() {
   const percentageCalculator = () => {
     const totalStudents = failedStudentCount + passedStudentCount;
     const percentage = (passedStudentCount / totalStudents) * 100;
-    return percentage;
+    return percentage.toFixed(1) ;
   };
 
   return (
@@ -182,3 +186,18 @@ export default function ListPage() {
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return redirectToLogin;
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+};
